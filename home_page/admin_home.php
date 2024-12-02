@@ -33,7 +33,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </a><br><br>
 
         <!-- Medicine Inventory Management -->
-        <a href="medicine_inventory_management.php">
+        <a href="../admin_panel/medicine_inventory_management.php">
             <button>
                 <i class="fas fa-pills"></i> Medicine Inventory
             </button>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </a><br><br>
 
         <!-- User Management -->
-        <a href="user_management.php">
+        <a href="../admin_panel/user_management.php">
             <button>
                 <i class="fas fa-users"></i> User Management
             </button>
