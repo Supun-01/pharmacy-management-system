@@ -36,6 +36,17 @@ $user_name = $_SESSION['user_name'];
     <p>Your User ID is: <?php echo htmlspecialchars($user_id); ?></p>
     <p>Your Name is: <?php echo htmlspecialchars($user_name); ?></p>
 
+    <!-- Navbar with links to different pages -->
+    <nav>
+        <ul>
+            <li><a href="../user_panel/prescription_upload.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Upload Prescription</a></li>
+            <li><a href="../user_panel/medicines_list.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Medicines Store</a></li>
+            <li><a href="../user_panel/lab_test_booking.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Book Lab Test</a></li>
+            <li><a href="../user_panel/medicine_delivery.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Track Delivery Status</a></li>
+        </ul>
+    </nav>
+
+
     <!-- Logout button -->
     <form method="post" action="">
         <button type="submit" name="logout">Logout</button>

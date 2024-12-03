@@ -17,13 +17,15 @@ if (!$user_id || !$user_name) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicines List</title>
+    <title>Prescription Upload</title>
 </head>
 
 <body>
-    <h1>medicines_list.php</h1>
     <!-- Display user information -->
+    <h1>prescription_upload.php</h1>
     <h1>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h1>
+
+    <!-- Prescription upload form or content goes here -->
 </body>
 
 </html>
