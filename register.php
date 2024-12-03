@@ -49,148 +49,50 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        input {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        p {
-            text-align: center;
-            color: #555;
-            margin-top: 15px;
-        }
-
-        p a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        p a:hover {
-            text-decoration: underline;
-        }
-
-        .error,
-        .success {
-            text-align: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .error {
-            background-color: #f8d7da;
-            color: #842029;
-        }
-
-        .success {
-            background-color: #d1e7dd;
-            color: #0f5132;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            input,
-            button {
-                font-size: 14px;
-            }
-        }
-    </style>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style/register.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Register</h1>
+        <h1><i class="fas fa-user-plus"></i> Register</h1>
+
         <?php
         if (!empty($error)) {
-            echo "<p class='error'>$error</p>";
+            echo "<p class='error'><i class='fas fa-exclamation-circle'></i> $error</p>";
         }
         if (!empty($success)) {
-            echo "<p class='success'>$success</p>";
+            echo "<p class='success'><i class='fas fa-check-circle'></i> $success</p>";
         }
         ?>
+
         <form method="post" action="register.php">
-            <label for="name">Name:</label>
+            <label for="name">
+                <i class="fas fa-user"></i> Name:
+            </label>
             <input type="text" name="name" id="name" required>
 
-            <label for="email">Email:</label>
+            <label for="email">
+                <i class="fas fa-envelope"></i> Email:
+            </label>
             <input type="email" name="email" id="email" required>
 
-            <label for="password">Password:</label>
+            <label for="password">
+                <i class="fas fa-lock"></i> Password:
+            </label>
             <input type="password" name="password" id="password" required>
 
-            <label for="confirm_password">Confirm Password:</label>
+            <label for="confirm_password">
+                <i class="fas fa-lock"></i> Confirm Password:
+            </label>
             <input type="password" name="confirm_password" id="confirm_password" required>
 
-            <button type="submit">Register</button>
+            <button type="submit"><i class="fas fa-user-plus"></i> Register</button>
         </form>
 
-        <p>Already have an account? <a href="login.php">Login here</a></p>
+        <p>Already have an account? <a href="login.php"><i class="fas fa-sign-in-alt"></i> Login here</a></p>
     </div>
 </body>
 

@@ -29,6 +29,10 @@ $user_name = $_SESSION['user_name'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Home</title>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to external CSS (optional) -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 
 <body>
@@ -39,17 +43,35 @@ $user_name = $_SESSION['user_name'];
     <!-- Navbar with links to different pages -->
     <nav>
         <ul>
-            <li><a href="../user_panel/prescription_upload.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Upload Prescription</a></li>
-            <li><a href="../user_panel/medicines_list.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Medicines Store</a></li>
-            <li><a href="../user_panel/lab_test_booking.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Book Lab Test</a></li>
-            <li><a href="../user_panel/medicine_delivery.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">Track Delivery Status</a></li>
+            <li>
+                <a href="../user_panel/prescription_upload.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
+                    <i class="fas fa-upload"></i> Upload Prescription
+                </a>
+            </li>
+            <li>
+                <a href="../user_panel/medicines_list.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
+                    <i class="fas fa-pills"></i> Medicines Store
+                </a>
+            </li>
+            <li>
+                <a href="../user_panel/lab_test_booking.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
+                    <i class="fas fa-flask"></i> Book Lab Test
+                </a>
+            </li>
+            <li>
+                <a href="../user_panel/medicine_delivery.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
+                    <i class="fas fa-truck"></i> Track Delivery Status
+                </a>
+            </li>
         </ul>
     </nav>
 
 
-    <!-- Logout button -->
+    <!-- Logout button with icon -->
     <form method="post" action="">
-        <button type="submit" name="logout">Logout</button>
+        <button type="submit" name="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
     </form>
 </body>
 

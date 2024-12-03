@@ -85,8 +85,11 @@ if (isset($_POST['logout'])) {
 
     <!-- Logout button -->
     <form method="post" action="">
-        <button type="submit" name="logout">Logout</button>
+        <button type="submit" name="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
     </form>
+
 </body>
 
 </html>

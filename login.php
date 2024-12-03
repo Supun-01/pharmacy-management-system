@@ -68,32 +68,37 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style/login.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1><i class="fas fa-sign-in-alt"></i> Login</h1>
+
         <?php
         if (!empty($error)) {
             echo "<p class='error'>" . htmlspecialchars($error) . "</p>";
         }
         ?>
+
         <form method="post" action="login.php">
-            <label for="username">Username:</label>
+            <label for="username">
+                <i class="fas fa-user"></i> Username:
+            </label>
             <input type="text" name="username" id="username" required>
 
-            <label for="password">Password:</label>
+            <label for="password">
+                <i class="fas fa-lock"></i> Password:
+            </label>
             <input type="password" name="password" id="password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
         </form>
 
-        <p>Don't have an account? <a href="register.php">Register here</a></p>
+        <p>Don't have an account? <a href="register.php"><i class="fas fa-user-plus"></i> Register here</a></p>
     </div>
 </body>
 
