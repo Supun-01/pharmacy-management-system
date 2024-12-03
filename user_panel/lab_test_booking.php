@@ -21,6 +21,8 @@ if (!$user_id || !$user_name) {
 </head>
 
 <body>
+    <button onclick="window.location.href='../home_page/user_home.php';">Back to User Home</button>
+
     <!-- Display user information -->
     <h1>lab_test_booking.php</h1>
     <h1>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h1>
