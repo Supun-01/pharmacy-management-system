@@ -5,7 +5,19 @@ session_start();
 // Check if the user is logged in and has the admin role
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     // Redirect to the login page if not authorized
-    header("Location: login.php");
+    header("Location: ../login.php");
+    exit;
+}
+
+// Retrieve user data from the session
+$user_id = $_SESSION['user_id'];
+$user_name = $_SESSION['user_name'];
+
+// Handle logout request
+if (isset($_POST['logout'])) {
+    // Destroy the session and redirect to the login page
+    session_destroy();
+    header("Location: ../login.php");
     exit;
 }
 ?>
@@ -23,6 +35,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 <body>
     <h1>Admin Panel</h1>
+    <p>Welcome, <strong><?php echo htmlspecialchars($user_name); ?></strong></p>
+    <p>Your Admin ID is: <strong><?php echo htmlspecialchars($user_id); ?></strong></p>
 
     <div>
         <!-- Lab Test Management -->
@@ -61,6 +75,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </a><br><br>
     </div>
 
+    <!-- Logout button -->
+    <form method="post" action="">
+        <button type="submit" name="logout">Logout</button>
+    </form>
 </body>
 
 </html>
