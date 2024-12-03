@@ -107,14 +107,16 @@ $result_admins = $conn->query($sql_admins);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <h1>User Management (Admin: <?php echo htmlspecialchars($user_name); ?>)</h1>
 
-    <!-- Button to go to Admin Panel -->
+    <!-- Button to go to Admin Panel with Font Awesome Icon -->
     <a href="../home_page/admin_home.php">
-        <button>Go to Admin Panel</button>
+        <button><i class="fas fa-cogs"></i> Go to Admin Panel</button>
     </a>
 
     <!-- Display success or error messages -->
@@ -127,7 +129,7 @@ $result_admins = $conn->query($sql_admins);
     }
     ?>
 
-    <!-- Add User Form -->
+    <!-- Add User Form with Font Awesome Icon -->
     <h2>Add New User</h2>
     <form method="POST" action="user_management.php">
         <label for="name">Name:</label>
@@ -148,7 +150,7 @@ $result_admins = $conn->query($sql_admins);
             <option value="admin">Admin</option>
         </select><br><br>
 
-        <button type="submit">Add User</button>
+        <button type="submit"><i class="fas fa-user-plus"></i> Add User</button>
     </form>
 
     <!-- Display Users -->
@@ -174,7 +176,7 @@ $result_admins = $conn->query($sql_admins);
                         <td>" . $row['role'] . "</td>
                         <td>" . $row['created_at'] . "</td>
                         <td>
-                            <a href='user_management.php?delete=" . $row['user_id'] . "'>Delete</a>
+                            <a href='user_management.php?delete=" . $row['user_id'] . "'><i class='fas fa-trash-alt'></i> Delete</a>
                         </td>
                       </tr>";
             }
@@ -207,7 +209,7 @@ $result_admins = $conn->query($sql_admins);
                         <td>" . $row['role'] . "</td>
                         <td>" . $row['created_at'] . "</td>
                         <td>
-                            <a href='user_management.php?delete=" . $row['user_id'] . "'>Delete</a>
+                            <a href='user_management.php?delete=" . $row['user_id'] . "'><i class='fas fa-trash-alt'></i> Delete</a>
                         </td>
                       </tr>";
             }
@@ -220,6 +222,7 @@ $result_admins = $conn->query($sql_admins);
 </body>
 
 </html>
+
 
 <?php
 // Close the database connection

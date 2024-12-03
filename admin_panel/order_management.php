@@ -79,13 +79,15 @@ if (isset($_POST['update_status'])) {
 <head>
     <meta charset="UTF-8">
     <title>Order Management</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <h1>Order Management</h1>
     <!-- Button to go to Admin Panel -->
     <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user['role']); ?>">
-        <button>Go to Admin Panel</button>
+        <button><i class="fas fa-cogs"></i> Go to Admin Panel</button>
     </a>
     <table border="1">
         <thead>
@@ -117,21 +119,21 @@ if (isset($_POST['update_status'])) {
                         <td><?php echo htmlspecialchars($order['status']); ?></td>
                         <td><?php echo htmlspecialchars($order['order_date']); ?></td>
                         <td>
-                            <!-- Action buttons to change the order status -->
+                            <!-- Action buttons to change the order status with Font Awesome icons -->
                             <form method="POST" style="display:inline;">
                                 <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
                                 <input type="hidden" name="status" value="pending">
-                                <button type="submit" name="update_status">Pending</button>
+                                <button type="submit" name="update_status"><i class="fas fa-hourglass-half"></i> Pending</button>
                             </form>
                             <form method="POST" style="display:inline;">
                                 <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
                                 <input type="hidden" name="status" value="cancelled">
-                                <button type="submit" name="update_status">Reject</button>
+                                <button type="submit" name="update_status"><i class="fas fa-times-circle"></i> Reject</button>
                             </form>
                             <form method="POST" style="display:inline;">
                                 <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
                                 <input type="hidden" name="status" value="delivered">
-                                <button type="submit" name="update_status">Confirmed</button>
+                                <button type="submit" name="update_status"><i class="fas fa-check-circle"></i> Confirmed</button>
                             </form>
                         </td>
                     </tr>

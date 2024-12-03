@@ -103,14 +103,16 @@ $result = $conn->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicine Inventory Management</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <h1>Medicine Inventory Management</h1>
 
-    <!-- Button to go to Admin Panel -->
+    <!-- Button to go to Admin Panel with Font Awesome Icon -->
     <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
-        <button>Go to Admin Panel</button>
+        <button><i class="fas fa-cogs"></i> Go to Admin Panel</button>
     </a>
 
     <!-- Display success or error messages -->
@@ -136,7 +138,7 @@ $result = $conn->query($query);
         <label for="stock">Stock:</label>
         <input type="text" name="stock" required><br><br>
 
-        <button type="submit" name="add">Add Medicine</button>
+        <button type="submit" name="add"><i class="fas fa-plus-circle"></i> Add Medicine</button>
     </form>
 
     <!-- Display Medicines -->
@@ -164,8 +166,12 @@ $result = $conn->query($query);
                         <td>" . $row['stock'] . "</td>
                         <td>" . $row['added_at'] . "</td>
                         <td>
-                            <a href='medicine_inventory_management.php?edit=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>Edit</a> | 
-                            <a href='medicine_inventory_management.php?delete=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>Delete</a>
+                            <a href='medicine_inventory_management.php?edit=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>
+                                <i class='fas fa-edit'></i> Edit
+                            </a> | 
+                            <a href='medicine_inventory_management.php?delete=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>
+                                <i class='fas fa-trash-alt'></i> Delete
+                            </a>
                         </td>
                       </tr>";
             }
@@ -199,7 +205,7 @@ $result = $conn->query($query);
             <label for="stock">Stock:</label>
             <input type="text" name="stock" value="<?php echo $edit_row['stock']; ?>" required><br><br>
 
-            <button type="submit" name="update">Update Medicine</button>
+            <button type="submit" name="update"><i class="fas fa-save"></i> Update Medicine</button>
         </form>
     <?php
     }
