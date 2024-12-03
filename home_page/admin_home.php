@@ -40,35 +40,43 @@ if (isset($_POST['logout'])) {
 
     <div>
         <!-- Lab Test Management -->
-        <a href="lab_test_management.php">
+        <a href="../admin_panel/lab_test_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
             <button>
                 <i class="fas fa-flask"></i> Lab Test Management
             </button>
         </a><br><br>
 
         <!-- Medicine Inventory Management -->
-        <a href="../admin_panel/medicine_inventory_management.php">
+        <a href="../admin_panel/medicine_inventory_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
             <button>
                 <i class="fas fa-pills"></i> Medicine Inventory
             </button>
         </a><br><br>
 
+        <!-- Orders Management -->
+        <a href="../admin_panel/order_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+            <button>
+                <i class="fas fa-shopping-cart"></i> Manage Orders
+            </button>
+        </a><br><br>
+
+
         <!-- Prescription Verification -->
-        <a href="prescription_verification.php">
+        <a href="../admin_panel/prescription_verification.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
             <button>
                 <i class="fas fa-prescription"></i> Prescription Verification
             </button>
         </a><br><br>
 
         <!-- Reporting and Analytics -->
-        <a href="reporting_and_analytics.php">
+        <a href="../admin_panel/reporting_and_analytics.php ?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
             <button>
                 <i class="fas fa-chart-line"></i> Reporting & Analytics
             </button>
         </a><br><br>
 
         <!-- User Management -->
-        <a href="../admin_panel/user_management.php">
+        <a href="../admin_panel/user_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
             <button>
                 <i class="fas fa-users"></i> User Management
             </button>

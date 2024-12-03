@@ -1,10 +1,41 @@
 <?php
+// Start the session
+session_start();
+
 // Include the database connection
 include '../db_connection.php';
 
 // Initialize variables for storing success or error messages
 $success = "";
 $error = "";
+
+// Check if user_id and user_name are passed
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+$user_name = isset($_GET['user_name']) ? $_GET['user_name'] : '';
+
+// Validate if the admin is valid by checking if user_id corresponds to an admin
+if ($user_id && $user_name) {
+    // Prepare query to check if the user_id corresponds to an admin
+    $check_admin_query = "SELECT user_id, role FROM Users WHERE user_id = ? AND role = 'admin'";
+    $stmt_check_admin = $conn->prepare($check_admin_query);
+    $stmt_check_admin->bind_param("i", $user_id);
+    $stmt_check_admin->execute();
+    $result = $stmt_check_admin->get_result();
+
+    // If no valid admin is found, redirect to login page and end the session
+    if ($result->num_rows == 0) {
+        // End the session and redirect
+        session_unset();
+        session_destroy();
+        header("Location: ../login.php");
+        exit();
+    }
+    $stmt_check_admin->close();
+} else {
+    // If the necessary parameters are not passed, redirect to login page
+    header("Location: ../login.php");
+    exit();
+}
 
 // Handle user deletion
 if (isset($_GET['delete'])) {
@@ -79,7 +110,7 @@ $result_admins = $conn->query($sql_admins);
 </head>
 
 <body>
-    <h1>User Management</h1>
+    <h1>User Management (Admin: <?php echo htmlspecialchars($user_name); ?>)</h1>
 
     <!-- Button to go to Admin Panel -->
     <a href="../home_page/admin_home.php">

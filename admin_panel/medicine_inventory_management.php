@@ -1,6 +1,37 @@
 <?php
+// Start session
+session_start();
+
 // Include the database connection
 include_once('../db_connection.php');
+
+// Check if user_id and user_name are passed
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+$user_name = isset($_GET['user_name']) ? $_GET['user_name'] : null;
+
+// Validate if the user is an admin
+if ($user_id && $user_name) {
+    // Query to check if the user_id corresponds to an admin
+    $check_admin_query = "SELECT user_id, role FROM Users WHERE user_id = ? AND role = 'admin'";
+    $stmt_check_admin = $conn->prepare($check_admin_query);
+    $stmt_check_admin->bind_param("i", $user_id);
+    $stmt_check_admin->execute();
+    $result = $stmt_check_admin->get_result();
+
+    // If no valid admin is found, redirect to login page
+    if ($result->num_rows == 0) {
+        // End the session and redirect
+        session_unset();
+        session_destroy();
+        header("Location: ../login.php");
+        exit();
+    }
+    $stmt_check_admin->close();
+} else {
+    // If the necessary parameters are missing, redirect to login page
+    header("Location: ../login.php");
+    exit();
+}
 
 // Initialize variables for success and error messages
 $success = $error = "";
@@ -78,10 +109,9 @@ $result = $conn->query($query);
     <h1>Medicine Inventory Management</h1>
 
     <!-- Button to go to Admin Panel -->
-    <a href="../home_page/admin_home.php">
+    <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
         <button>Go to Admin Panel</button>
     </a>
-
 
     <!-- Display success or error messages -->
     <?php if ($success) {
@@ -93,7 +123,7 @@ $result = $conn->query($query);
 
     <!-- Add New Medicine Form -->
     <h2>Add New Medicine</h2>
-    <form method="POST" action="medicine_inventory_management.php">
+    <form method="POST" action="medicine_inventory_management.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
         <label for="name">Name:</label>
         <input type="text" name="name" required><br><br>
 
@@ -134,8 +164,8 @@ $result = $conn->query($query);
                         <td>" . $row['stock'] . "</td>
                         <td>" . $row['added_at'] . "</td>
                         <td>
-                            <a href='medicine_inventory_management.php?edit=" . $row['medicine_id'] . "'>Edit</a> | 
-                            <a href='medicine_inventory_management.php?delete=" . $row['medicine_id'] . "'>Delete</a>
+                            <a href='medicine_inventory_management.php?edit=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>Edit</a> | 
+                            <a href='medicine_inventory_management.php?delete=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>Delete</a>
                         </td>
                       </tr>";
             }
@@ -154,7 +184,7 @@ $result = $conn->query($query);
         $edit_row = $edit_result->fetch_assoc();
     ?>
         <h2>Edit Medicine</h2>
-        <form method="POST" action="medicine_inventory_management.php">
+        <form method="POST" action="medicine_inventory_management.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
             <input type="hidden" name="medicine_id" value="<?php echo $edit_row['medicine_id']; ?>">
 
             <label for="name">Name:</label>

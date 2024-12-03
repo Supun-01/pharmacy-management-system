@@ -1,0 +1,15 @@
+/* Styles for delivery statuses */
+.pending {
+    background-color: yellow;
+    color: black;
+}
+
+.delivered {
+    background-color: green;
+    color: white;
+}
+
+.cancelled {
+    background-color: red;
+    color: white;
+}

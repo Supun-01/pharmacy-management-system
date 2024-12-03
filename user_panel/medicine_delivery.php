@@ -9,6 +9,19 @@ if (!$user_id || !$user_name) {
     header("Location: ../login.php");
     exit;
 }
+
+// Include database connection
+include '../db_connection.php';
+
+// Query to fetch orders for the user
+$query = "SELECT * FROM `orders` WHERE `user_id` = $user_id";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
+
+$orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +31,39 @@ if (!$user_id || !$user_name) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicine Delivery</title>
+    <link rel="stylesheet" href="../style/medicine_delivery.css"> <!-- Link to external CSS -->
 </head>
 
 <body>
     <button onclick="window.location.href='../home_page/user_home.php';">Back to User Home</button>
 
-    <h1>medicine_delivery.php</h1>
-    <!-- Display user information -->
     <h1>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h1>
 
-    <!-- Content for medicine delivery goes here -->
+    <h2>Your Orders</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Medicine ID</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($orders as $order): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($order['order_id']); ?></td>
+                    <td><?php echo htmlspecialchars($order['medicine_id']); ?></td>
+                    <td><?php echo htmlspecialchars($order['quantity']); ?></td>
+                    <td class="<?php echo htmlspecialchars($order['status']); ?>">
+                        <?php echo ucfirst(htmlspecialchars($order['status'])); ?>
+                    </td>
+                    <td><?php echo htmlspecialchars($order['order_date']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </body>
 
 </html>
