@@ -1,0 +1,60 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.admin-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styling */
+.prescription-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.prescription-table th,
+.prescription-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.prescription-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.prescription-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .prescription-table {
+        font-size: 14px;
+    }
+}

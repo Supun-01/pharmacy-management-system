@@ -1,0 +1,117 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container for Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Back to User Home Button */
+.back-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Orders Table */
+.orders-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.orders-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.orders-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.orders-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Status Column Styling */
+.status {
+    font-weight: bold;
+}
+
+.status.Delivered {
+    color: #2ecc71;
+}
+
+.status.Pending {
+    color: #f39c12;
+}
+
+.status.Cancelled {
+    color: #e74c3c;
+}
+
+.status i {
+    margin-left: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 24px;
+    }
+
+    .orders-table {
+        font-size: 14px;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 8px;
+    }
+
+    .back-btn {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}

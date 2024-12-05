@@ -1,0 +1,208 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    /* Set the width of the container */
+    margin: 0 auto;
+    /* Center the container */
+    padding: 30px;
+    background-color: #fff;
+    /* White background for the box */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Soft shadow effect */
+    margin-top: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.admin-btn {
+    background-color: #007bff;
+}
+
+.add-btn {
+    background-color: #28a745;
+}
+
+.update-btn {
+    background-color: #ffc107;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Action Buttons (Edit/Delete) */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.action-btn.edit {
+    background-color: #007bff;
+}
+
+.action-btn.delete {
+    background-color: #dc3545;
+}
+
+.action-btn i {
+    margin-right: 5px;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+/* Form Styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form label {
+    margin-bottom: 5px;
+}
+
+.form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    opacity: 0.9;
+}
+
+/* Table Styles */
+.medicine-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.medicine-table th,
+.medicine-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.medicine-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.medicine-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.medicine-table tr:hover {
+    background-color: #eaf3ff;
+}
+
+.medicine-table a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.medicine-table a:hover {
+    text-decoration: underline;
+}
+
+/* Section Title Styles */
+.section-title {
+    margin-top: 30px;
+    font-size: 24px;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Success and Error Message Styles */
+.success {
+    color: #28a745;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        /* Adjust container width on small screens */
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .form input,
+    .form button {
+        font-size: 14px;
+    }
+
+    .medicine-table {
+        font-size: 14px;
+    }
+}

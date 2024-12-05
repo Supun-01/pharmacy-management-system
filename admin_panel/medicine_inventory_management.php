@@ -105,114 +105,121 @@ $result = $conn->query($query);
     <title>Medicine Inventory Management</title>
     <!-- Add Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../style/admin_panel/medicine_inventory_management.css">
 </head>
 
 <body>
-    <h1>Medicine Inventory Management</h1>
+    <div class="container">
+        <h1 class="page-title">Medicine Inventory Management</h1>
 
-    <!-- Button to go to Admin Panel with Font Awesome Icon -->
-    <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
-        <button><i class="fas fa-cogs"></i> Go to Admin Panel</button>
-    </a>
+        <!-- Button to go to Admin Panel -->
+        <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
+            <button class="btn admin-btn"><i class="fas fa-cogs"></i> Go to Admin Panel</button>
+        </a>
 
-    <!-- Display success or error messages -->
-    <?php if ($success) {
-        echo "<p style='color: green;'>$success</p>";
-    } ?>
-    <?php if ($error) {
-        echo "<p style='color: red;'>$error</p>";
-    } ?>
+        <!-- Success and Error Messages -->
+        <?php if ($success) {
+            echo "<p class='success'>$success</p>";
+        } ?>
+        <?php if ($error) {
+            echo "<p class='error'>$error</p>";
+        } ?>
 
-    <!-- Add New Medicine Form -->
-    <h2>Add New Medicine</h2>
-    <form method="POST" action="medicine_inventory_management.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br><br>
-
-        <label for="category">Category:</label>
-        <input type="text" name="category" required><br><br>
-
-        <label for="price">Price:</label>
-        <input type="text" name="price" required><br><br>
-
-        <label for="stock">Stock:</label>
-        <input type="text" name="stock" required><br><br>
-
-        <button type="submit" name="add"><i class="fas fa-plus-circle"></i> Add Medicine</button>
-    </form>
-
-    <!-- Display Medicines -->
-    <h2>All Medicines</h2>
-    <table border="1">
-        <tr>
-            <th>Medicine ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Added At</th>
-            <th>Actions</th>
-        </tr>
-
-        <?php
-        if ($result->num_rows > 0) {
-            // Output data of each medicine
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                        <td>" . $row['medicine_id'] . "</td>
-                        <td>" . $row['name'] . "</td>
-                        <td>" . $row['category'] . "</td>
-                        <td>" . $row['price'] . "</td>
-                        <td>" . $row['stock'] . "</td>
-                        <td>" . $row['added_at'] . "</td>
-                        <td>
-                            <a href='medicine_inventory_management.php?edit=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>
-                                <i class='fas fa-edit'></i> Edit
-                            </a> | 
-                            <a href='medicine_inventory_management.php?delete=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>
-                                <i class='fas fa-trash-alt'></i> Delete
-                            </a>
-                        </td>
-                      </tr>";
-            }
-        } else {
-            echo "<tr><td colspan='7'>No medicines found</td></tr>";
-        }
-        ?>
-    </table>
-
-    <?php
-    // Edit Medicine Form (appears when the "Edit" link is clicked)
-    if (isset($_GET['edit'])) {
-        $medicine_id = $_GET['edit'];
-        $query = "SELECT * FROM Medicines WHERE medicine_id = $medicine_id";
-        $edit_result = $conn->query($query);
-        $edit_row = $edit_result->fetch_assoc();
-    ?>
-        <h2>Edit Medicine</h2>
-        <form method="POST" action="medicine_inventory_management.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <input type="hidden" name="medicine_id" value="<?php echo $edit_row['medicine_id']; ?>">
-
+        <!-- Add New Medicine Form -->
+        <h2 class="section-title">Add New Medicine</h2>
+        <form class="form" method="POST" action="medicine_inventory_management.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
             <label for="name">Name:</label>
-            <input type="text" name="name" value="<?php echo $edit_row['name']; ?>" required><br><br>
+            <input type="text" name="name" class="input" required><br><br>
 
             <label for="category">Category:</label>
-            <input type="text" name="category" value="<?php echo $edit_row['category']; ?>" required><br><br>
+            <input type="text" name="category" class="input" required><br><br>
 
             <label for="price">Price:</label>
-            <input type="text" name="price" value="<?php echo $edit_row['price']; ?>" required><br><br>
+            <input type="text" name="price" class="input" required><br><br>
 
             <label for="stock">Stock:</label>
-            <input type="text" name="stock" value="<?php echo $edit_row['stock']; ?>" required><br><br>
+            <input type="text" name="stock" class="input" required><br><br>
 
-            <button type="submit" name="update"><i class="fas fa-save"></i> Update Medicine</button>
+            <button type="submit" name="add" class="btn add-btn"><i class="fas fa-plus-circle"></i> Add Medicine</button>
         </form>
-    <?php
-    }
-    ?>
+
+        <!-- Medicines Table -->
+        <h2 class="section-title">All Medicines</h2>
+        <table class="medicine-table">
+            <thead>
+                <tr>
+                    <th>Medicine ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Added At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>" . $row['medicine_id'] . "</td>
+                                <td>" . $row['name'] . "</td>
+                                <td>" . $row['category'] . "</td>
+                                <td>" . $row['price'] . "</td>
+                                <td>" . $row['stock'] . "</td>
+                                <td>" . $row['added_at'] . "</td>
+                                <td>
+                                    <a href='medicine_inventory_management.php?edit=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>
+                                        <i class='fas fa-edit'></i> Edit
+                                    </a> | 
+                                    <a href='medicine_inventory_management.php?delete=" . $row['medicine_id'] . "&user_id=" . $user_id . "&user_name=" . urlencode($user_name) . "'>
+                                        <i class='fas fa-trash-alt'></i> Delete
+                                    </a>
+                                </td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No medicines found</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <!-- Edit Medicine Form -->
+        <?php
+        if (isset($_GET['edit'])) {
+            $medicine_id = $_GET['edit'];
+            $query = "SELECT * FROM Medicines WHERE medicine_id = $medicine_id";
+            $edit_result = $conn->query($query);
+            $edit_row = $edit_result->fetch_assoc();
+        ?>
+            <h2 class="section-title">Edit Medicine</h2>
+            <form class="form" method="POST" action="medicine_inventory_management.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <input type="hidden" name="medicine_id" value="<?php echo $edit_row['medicine_id']; ?>">
+
+                <label for="name">Name:</label>
+                <input type="text" name="name" value="<?php echo $edit_row['name']; ?>" class="input" required><br><br>
+
+                <label for="category">Category:</label>
+                <input type="text" name="category" value="<?php echo $edit_row['category']; ?>" class="input" required><br><br>
+
+                <label for="price">Price:</label>
+                <input type="text" name="price" value="<?php echo $edit_row['price']; ?>" class="input" required><br><br>
+
+                <label for="stock">Stock:</label>
+                <input type="text" name="stock" value="<?php echo $edit_row['stock']; ?>" class="input" required><br><br>
+
+                <button type="submit" name="update" class="btn update-btn"><i class="fas fa-save"></i> Update Medicine</button>
+            </form>
+        <?php
+        }
+        ?>
+    </div>
 </body>
 
 </html>
+
 
 <?php
 // Close the database connection

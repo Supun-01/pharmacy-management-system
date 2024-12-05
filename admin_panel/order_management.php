@@ -74,73 +74,80 @@ if (isset($_POST['update_status'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Order Management</title>
     <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="../style/admin_panel/order_management.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <h1>Order Management</h1>
-    <!-- Button to go to Admin Panel -->
-    <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user['role']); ?>">
-        <button><i class="fas fa-cogs"></i> Go to Admin Panel</button>
-    </a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Order ID</th>
-                <th>Medicine ID</th>
-                <th>Medicine Name</th>
-                <th>Quantity</th>
-                <th>Status</th>
-                <th>Order Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($orders_by_user as $user_id => $orders): ?>
-                <?php foreach ($orders as $index => $order): ?>
-                    <tr>
-                        <!-- Only show the user_id for the first row of this user's orders -->
-                        <?php if ($index === 0): ?>
-                            <td rowspan="<?php echo count($orders); ?>">
-                                <?php echo htmlspecialchars($user_id); ?>
+    <div class="container">
+        <h1 class="page-title">Order Management</h1>
+
+        <!-- Admin Panel Button -->
+        <a href="../home_page/admin_home.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user['role']); ?>">
+            <button class="btn admin-btn"><i class="fas fa-cogs"></i> Go to Admin Panel</button>
+        </a>
+
+        <!-- Orders Table -->
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Order ID</th>
+                    <th>Medicine ID</th>
+                    <th>Medicine Name</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Order Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($orders_by_user as $user_id => $orders): ?>
+                    <?php foreach ($orders as $index => $order): ?>
+                        <tr>
+                            <?php if ($index === 0): ?>
+                                <td rowspan="<?php echo count($orders); ?>"><?php echo htmlspecialchars($user_id); ?></td>
+                            <?php endif; ?>
+                            <td><?php echo htmlspecialchars($order['order_id']); ?></td>
+                            <td><?php echo htmlspecialchars($order['medicine_id']); ?></td>
+                            <td><?php echo htmlspecialchars($order['medicine_name']); ?></td>
+                            <td><?php echo htmlspecialchars($order['quantity']); ?></td>
+                            <td><?php echo htmlspecialchars($order['status']); ?></td>
+                            <td><?php echo htmlspecialchars($order['order_date']); ?></td>
+                            <td>
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                                    <input type="hidden" name="status" value="pending">
+                                    <button type="submit" name="update_status" class="btn action-btn pending-btn">
+                                        <i class="fas fa-hourglass-half"></i> Pending
+                                    </button>
+                                </form>
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                                    <input type="hidden" name="status" value="cancelled">
+                                    <button type="submit" name="update_status" class="btn action-btn reject-btn">
+                                        <i class="fas fa-times-circle"></i> Reject
+                                    </button>
+                                </form>
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                                    <input type="hidden" name="status" value="delivered">
+                                    <button type="submit" name="update_status" class="btn action-btn confirm-btn">
+                                        <i class="fas fa-check-circle"></i> Confirmed
+                                    </button>
+                                </form>
                             </td>
-                        <?php endif; ?>
-                        <td><?php echo htmlspecialchars($order['order_id']); ?></td>
-                        <td><?php echo htmlspecialchars($order['medicine_id']); ?></td>
-                        <td><?php echo htmlspecialchars($order['medicine_name']); ?></td>
-                        <td><?php echo htmlspecialchars($order['quantity']); ?></td>
-                        <td><?php echo htmlspecialchars($order['status']); ?></td>
-                        <td><?php echo htmlspecialchars($order['order_date']); ?></td>
-                        <td>
-                            <!-- Action buttons to change the order status with Font Awesome icons -->
-                            <form method="POST" style="display:inline;">
-                                <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
-                                <input type="hidden" name="status" value="pending">
-                                <button type="submit" name="update_status"><i class="fas fa-hourglass-half"></i> Pending</button>
-                            </form>
-                            <form method="POST" style="display:inline;">
-                                <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
-                                <input type="hidden" name="status" value="cancelled">
-                                <button type="submit" name="update_status"><i class="fas fa-times-circle"></i> Reject</button>
-                            </form>
-                            <form method="POST" style="display:inline;">
-                                <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
-                                <input type="hidden" name="status" value="delivered">
-                                <button type="submit" name="update_status"><i class="fas fa-check-circle"></i> Confirmed</button>
-                            </form>
-                        </td>
-                    </tr>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

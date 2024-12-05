@@ -76,76 +76,66 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prescription Verification</title>
     <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="../style/admin_panel/prescription_verification.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <!-- Display the user information -->
-    <h1>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h1>
+    <div class="container">
+        <h1>Welcome, <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h1>
 
-    <!-- Display the prescription data -->
-    <h2>All Prescriptions</h2>
-    <!-- Button to go to Admin Panel with Font Awesome Icon -->
-    <a href="../home_page/admin_home.php">
-        <button><i class="fas fa-cogs"></i> Go to Admin Panel</button>
-    </a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Prescription ID</th>
-                <th>File Path</th>
-                <th>Status</th>
-                <th>Uploaded At</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $previous_user_id = null;
-            $user_prescription_count = 0;
+        <!-- Admin Panel Button -->
+        <a href="../home_page/admin_home.php">
+            <button class="btn admin-btn"><i class="fas fa-cogs"></i> Go to Admin Panel</button>
+        </a>
 
-            // Loop through the result set and display each prescription
-            while ($row = mysqli_fetch_assoc($result)) {
-                // Check if the user_id is different from the previous one
-                if ($previous_user_id != $row['user_id']) {
-                    // Get the count of prescriptions for this user
-                    $user_prescription_count = 1;
-                    $user_id = htmlspecialchars($row['user_id']);
-
-                    // Display the user_id with rowspan
-                    echo "<tr>";
-                    echo "<td rowspan='$user_prescription_count'>" . $user_id . "</td>";
-                } else {
-                    // If user_id is the same as the previous, increment the rowspan and leave the user_id cell empty
-                    $user_prescription_count++;
-                    echo "<tr><td></td>";
+        <h2>All Prescriptions</h2>
+        <table class="prescription-table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Prescription ID</th>
+                    <th>File Path</th>
+                    <th>Status</th>
+                    <th>Uploaded At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $user_prescriptions = [];
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $user_prescriptions[$row['user_id']][] = $row;
                 }
 
-                echo "<td>" . htmlspecialchars($row['prescription_id']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['file_path']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['uploaded_at']) . "</td>";
-                echo "<td>";
-                // Create a form with a dropdown and button to change the status
-                echo '<form method="POST" action="">';
-                echo '<input type="hidden" name="prescription_id" value="' . htmlspecialchars($row['prescription_id']) . '">';
-                echo '<select name="new_status">';
-                echo '<option value="pending" ' . ($row['status'] == 'pending' ? 'selected' : '') . '>Pending</option>';
-                echo '<option value="delivered" ' . ($row['status'] == 'delivered' ? 'selected' : '') . '>Delivered</option>';
-                echo '<option value="cancelled" ' . ($row['status'] == 'cancelled' ? 'selected' : '') . '>Cancelled</option>';
-                echo '</select>';
-                echo '<button type="submit" name="change_status"><i class="fas fa-sync-alt"></i> Change Status</button>';
-                echo '</form>';
-                echo "</td>";
-                echo "</tr>";
-
-                // Update the previous_user_id
-                $previous_user_id = $row['user_id'];
-            }
-            ?>
-        </tbody>
-    </table>
+                foreach ($user_prescriptions as $user_id => $prescriptions) {
+                    foreach ($prescriptions as $index => $row) {
+                        echo "<tr>";
+                        if ($index === 0) {
+                            echo "<td rowspan='" . count($prescriptions) . "'>" . htmlspecialchars($user_id) . "</td>";
+                        }
+                        echo "<td>" . htmlspecialchars($row['prescription_id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['file_path']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['uploaded_at']) . "</td>";
+                        echo "<td>";
+                        echo '<form method="POST">';
+                        echo '<input type="hidden" name="prescription_id" value="' . htmlspecialchars($row['prescription_id']) . '">';
+                        echo '<select name="new_status">';
+                        echo '<option value="pending"' . ($row['status'] === 'pending' ? ' selected' : '') . '>Pending</option>';
+                        echo '<option value="delivered"' . ($row['status'] === 'delivered' ? ' selected' : '') . '>Delivered</option>';
+                        echo '<option value="cancelled"' . ($row['status'] === 'cancelled' ? ' selected' : '') . '>Cancelled</option>';
+                        echo '</select>';
+                        echo '<button type="submit" name="change_status"><i class="fas fa-sync-alt"></i> Change Status</button>';
+                        echo '</form>';
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

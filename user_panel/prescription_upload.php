@@ -65,28 +65,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['prescription_file']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prescription Upload</title>
-    <!-- Font Awesome CDN -->
+    <!-- Font Awesome CDN for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to external CSS (custom CSS) -->
+    <link href="../style/user_panel/prescription_upload.css" rel="stylesheet">
 </head>
 
 <body>
-    <button onclick="window.location.href='../home_page/user_home.php';">
-        <i class="fas fa-home"></i> Back to User Home
-    </button>
-
-    <h1><i class="fas fa-file-upload"></i> Prescription Upload</h1>
-    <h2>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h2>
-
-    <!-- Prescription upload form -->
-    <form action="prescription_upload.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>" method="POST" enctype="multipart/form-data">
-        <label for="prescription_file">
-            <i class="fas fa-file-medical"></i> Upload Prescription File (JPEG, PNG, GIF, PDF, Word):
-        </label>
-        <input type="file" name="prescription_file" id="prescription_file" accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx" required><br><br>
-        <button type="submit">
-            <i class="fas fa-cloud-upload-alt"></i> Upload Prescription
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <a href="#" class="logo">Prescription Upload</a>
+        <button class="back-btn" onclick="window.location.href='../home_page/user_home.php';">
+            <i class="fas fa-home"></i> Back to User Home
         </button>
-    </form>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <section class="main-content">
+            <h1><i class="fas fa-file-upload"></i> Prescription Upload</h1>
+            <h2>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h2>
+
+            <!-- Prescription upload form -->
+            <form action="prescription_upload.php?user_id=<?php echo $user_id; ?>&user_name=<?php echo urlencode($user_name); ?>" method="POST" enctype="multipart/form-data" class="upload-form">
+                <div class="form-group">
+                    <label for="prescription_file">
+                        <i class="fas fa-file-medical"></i> Upload Prescription File (JPEG, PNG, GIF, PDF, Word):
+                    </label>
+                    <input type="file" name="prescription_file" id="prescription_file" accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx" required>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload Prescription
+                </button>
+            </form>
+        </section>
+    </div>
+
 </body>
 
 </html>

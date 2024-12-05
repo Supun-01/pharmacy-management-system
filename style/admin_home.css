@@ -1,0 +1,131 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container styling */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* Header styling */
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* User Info Styling */
+p {
+    color: #555;
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Admin Buttons Section */
+.admin-buttons {
+    margin-top: 20px;
+}
+
+.admin-buttons a {
+    text-decoration: none;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+/* Buttons Styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button i {
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Logout button styling */
+.logout-form {
+    margin-top: 30px;
+}
+
+.logout-form button {
+    background-color: #f44336;
+    width: 100%;
+    padding: 15px;
+}
+
+.logout-form button:hover {
+    background-color: #e53935;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .admin-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 80%;
+    }
+}

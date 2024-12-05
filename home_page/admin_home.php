@@ -31,65 +31,67 @@ if (isset($_POST['logout'])) {
     <title>Admin Panel</title>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="../style/admin_home.css">
 </head>
 
 <body>
-    <h1>Admin Panel</h1>
-    <p>Welcome, <strong><?php echo htmlspecialchars($user_name); ?></strong></p>
-    <p>Your Admin ID is: <strong><?php echo htmlspecialchars($user_id); ?></strong></p>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <p>Welcome, <strong><?php echo htmlspecialchars($user_name); ?></strong></p>
+        <p>Your Admin ID is: <strong><?php echo htmlspecialchars($user_id); ?></strong></p>
 
-    <div>
-        <!-- Lab Test Management -->
-        <a href="../admin_panel/lab_test_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <button>
-                <i class="fas fa-flask"></i> Lab Test Management
+        <div class="admin-buttons">
+            <!-- Lab Test Management -->
+            <a href="../admin_panel/lab_test_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <button>
+                    <i class="fas fa-flask"></i> Lab Test Management
+                </button>
+            </a>
+
+            <!-- Medicine Inventory Management -->
+            <a href="../admin_panel/medicine_inventory_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <button>
+                    <i class="fas fa-pills"></i> Medicine Inventory
+                </button>
+            </a>
+
+            <!-- Orders Management -->
+            <a href="../admin_panel/order_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <button>
+                    <i class="fas fa-shopping-cart"></i> Manage Orders
+                </button>
+            </a>
+
+            <!-- Prescription Verification -->
+            <a href="../admin_panel/prescription_verification.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <button>
+                    <i class="fas fa-prescription"></i> Prescription Verification
+                </button>
+            </a>
+
+            <!-- Reporting and Analytics -->
+            <!-- <a href="../admin_panel/reporting_and_analytics.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <button>
+                    <i class="fas fa-chart-line"></i> Reporting & Analytics
+                </button>
+            </a> -->
+
+            <!-- User Management -->
+            <a href="../admin_panel/user_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
+                <button>
+                    <i class="fas fa-users"></i> User Management
+                </button>
+            </a>
+        </div>
+
+        <!-- Logout button -->
+        <form method="post" action="" class="logout-form">
+            <button type="submit" name="logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
             </button>
-        </a><br><br>
-
-        <!-- Medicine Inventory Management -->
-        <a href="../admin_panel/medicine_inventory_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <button>
-                <i class="fas fa-pills"></i> Medicine Inventory
-            </button>
-        </a><br><br>
-
-        <!-- Orders Management -->
-        <a href="../admin_panel/order_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <button>
-                <i class="fas fa-shopping-cart"></i> Manage Orders
-            </button>
-        </a><br><br>
-
-
-        <!-- Prescription Verification -->
-        <a href="../admin_panel/prescription_verification.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <button>
-                <i class="fas fa-prescription"></i> Prescription Verification
-            </button>
-        </a><br><br>
-
-        <!-- Reporting and Analytics -->
-        <a href="../admin_panel/reporting_and_analytics.php ?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <button>
-                <i class="fas fa-chart-line"></i> Reporting & Analytics
-            </button>
-        </a><br><br>
-
-        <!-- User Management -->
-        <a href="../admin_panel/user_management.php?user_id=<?php echo urlencode($user_id); ?>&user_name=<?php echo urlencode($user_name); ?>">
-            <button>
-                <i class="fas fa-users"></i> User Management
-            </button>
-        </a><br><br>
+        </form>
     </div>
-
-    <!-- Logout button -->
-    <form method="post" action="">
-        <button type="submit" name="logout">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
-    </form>
-
 </body>
 
 </html>

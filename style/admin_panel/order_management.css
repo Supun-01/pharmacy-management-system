@@ -1,0 +1,94 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+.admin-btn {
+    background-color: #007bff;
+}
+
+.action-btn {
+    margin: 5px 0;
+}
+
+.pending-btn {
+    background-color: #ffc107;
+}
+
+.reject-btn {
+    background-color: #dc3545;
+}
+
+.confirm-btn {
+    background-color: #28a745;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Table Styles */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-table th,
+.order-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.order-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .order-table {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
