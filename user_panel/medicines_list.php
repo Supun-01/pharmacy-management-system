@@ -30,7 +30,10 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicines List</title>
-    <link rel="stylesheet" href="../style/card.css"> <!-- Link to external CSS file -->
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../style/card.css"> Link to external CSS file -->
+    <link rel="stylesheet" href="../style/user_panel/medicines_list.css">
 
     <style>
         body {
@@ -52,32 +55,43 @@ if (!$result) {
 </head>
 
 <body>
-    <button onclick="window.location.href='../home_page/user_home.php';">Back to User Home</button>
+    <!-- Back to User Home Button -->
+    <button class="back-btn" onclick="window.location.href='../home_page/user_home.php';">
+        <i class="fas fa-home"></i> Back to User Home
+    </button>
 
-    <h1>Welcome <?php echo htmlspecialchars($user_name); ?>! Your User ID is <?php echo htmlspecialchars($user_id); ?>.</h1>
+    <h1>
+        <i class="fas fa-user"></i> Welcome <?php echo htmlspecialchars($user_name); ?>.
+    </h1>
 
     <div class="medicine-cards-container">
         <?php while ($medicine = $result->fetch_assoc()): ?>
             <div class="medicine-card">
                 <img src="<?php echo htmlspecialchars($medicine['image_location']); ?>" alt="<?php echo htmlspecialchars($medicine['name']); ?>" class="medicine-image">
-                <h2><?php echo htmlspecialchars($medicine['name']); ?></h2>
-                <p>Category: <?php echo htmlspecialchars($medicine['category']); ?></p>
-                <p>Price: $<?php echo number_format($medicine['price'], 2); ?></p>
-                <p>Stock: <?php echo $medicine['stock']; ?> available</p>
+                <h2><i class="fas fa-pills"></i> <?php echo htmlspecialchars($medicine['name']); ?></h2>
+                <p><i class="fas fa-tags"></i> Category: <?php echo htmlspecialchars($medicine['category']); ?></p>
+                <p><i class="fas fa-dollar-sign"></i> Price: $<?php echo number_format($medicine['price'], 2); ?></p>
+                <p><i class="fas fa-warehouse"></i> Stock: <?php echo $medicine['stock']; ?> available</p>
                 <div>
-                    <label for="quantity_<?php echo $medicine['medicine_id']; ?>">Quantity:</label>
+                    <label for="quantity_<?php echo $medicine['medicine_id']; ?>">
+                        <i class="fas fa-sort-numeric-up"></i> Quantity:
+                    </label>
                     <input type="number" id="quantity_<?php echo $medicine['medicine_id']; ?>" name="quantity" min="1" max="<?php echo $medicine['stock']; ?>" value="1">
                 </div>
-                <button class="add-to-cart" onclick="addToCart(<?php echo $medicine['medicine_id']; ?>, '<?php echo htmlspecialchars($medicine['name']); ?>', <?php echo $medicine['price']; ?>, '<?php echo $medicine['stock']; ?>')">Add to Cart</button>
+                <button class="add-to-cart" onclick="addToCart(<?php echo $medicine['medicine_id']; ?>, '<?php echo htmlspecialchars($medicine['name']); ?>', <?php echo $medicine['price']; ?>, '<?php echo $medicine['stock']; ?>')">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
             </div>
         <?php endwhile; ?>
     </div>
 
     <!-- Cart Navigation Bar -->
     <div class="cart-nav">
-        <h3>Cart</h3>
+        <h3><i class="fas fa-shopping-cart"></i> Cart</h3>
         <ul id="cart-items"></ul>
-        <button onclick="confirmOrder()">Confirm Order</button>
+        <button onclick="confirmOrder()">
+            <i class="fas fa-check-circle"></i> Confirm Order
+        </button>
     </div>
 
     <script>
@@ -112,7 +126,7 @@ if (!$result) {
 
             cart.forEach(item => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
+                listItem.innerHTML = `<i class="fas fa-capsules"></i> ${item.name} - $${item.price} x ${item.quantity}`;
                 cartItemsList.appendChild(listItem);
             });
         }

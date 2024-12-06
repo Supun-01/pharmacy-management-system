@@ -13,8 +13,25 @@ if (!$user_id || !$user_name) {
 // Include database connection
 include '../db_connection.php';
 
-// Query to fetch orders for the user
-$query = "SELECT * FROM `orders` WHERE `user_id` = $user_id";
+// Query to fetch orders with medicine names for the user
+$query = "
+    SELECT 
+        o.order_id,
+        o.medicine_id,
+        m.name AS medicine_name,
+        o.quantity,
+        o.status,
+        o.order_date
+    FROM 
+        `orders` o
+    JOIN 
+        `medicines` m 
+    ON 
+        o.medicine_id = m.medicine_id
+    WHERE 
+        o.user_id = $user_id
+";
+
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -70,7 +87,7 @@ $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <thead>
                 <tr>
                     <th>Order ID</th>
-                    <th>Medicine ID</th>
+                    <th>Medicine Name</th>
                     <th>Quantity</th>
                     <th>Status</th>
                     <th>Order Date</th>
@@ -80,7 +97,7 @@ $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 <?php foreach ($orders as $order): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($order['order_id']); ?></td>
-                        <td><?php echo htmlspecialchars($order['medicine_id']); ?></td>
+                        <td><?php echo htmlspecialchars($order['medicine_name']); ?></td>
                         <td><?php echo htmlspecialchars($order['quantity']); ?></td>
                         <td class="status <?php echo htmlspecialchars($order['status']); ?>">
                             <?php
