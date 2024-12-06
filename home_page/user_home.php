@@ -33,6 +33,24 @@ $user_name = $_SESSION['user_name'];
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Link to external CSS (optional) -->
     <link rel="stylesheet" href="../style/user_home.css">
+    <style>
+        body {
+            background-image: url(../assets/user_home.jpg);
+            background-repeat: no-repeat;
+            /* Prevents the image from repeating */
+            background-size: cover;
+            /* Ensures the image covers the entire background */
+            background-position: center;
+            /* Centers the image */
+            background-attachment: fixed;
+            /* Keeps the image fixed as the user scrolls */
+            margin: 0;
+            /* Removes default body margin */
+            height: 100vh;
+            /* Ensures body takes the full height of the viewport */
+        }
+    </style>
+
 </head>
 
 <body>

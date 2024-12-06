@@ -31,6 +31,24 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicines List</title>
     <link rel="stylesheet" href="../style/card.css"> <!-- Link to external CSS file -->
+
+    <style>
+        body {
+            background-image: url("../assets/medicines_list.jpg");
+            background-repeat: no-repeat;
+            /* Prevents the image from repeating */
+            background-size: cover;
+            /* Ensures the image covers the entire background */
+            background-position: center;
+            /* Centers the image */
+            background-attachment: fixed;
+            /* Keeps the image fixed as the user scrolls */
+            margin: 0;
+            /* Removes default body margin */
+            height: 100vh;
+            /* Ensures body takes the full height of the viewport */
+        }
+    </style>
 </head>
 
 <body>

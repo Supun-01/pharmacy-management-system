@@ -34,6 +34,24 @@ $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <link rel="stylesheet" href="../style/user_panel/medicine_delivery.css"> <!-- Link to external CSS -->
     <!-- Font Awesome CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("../assets/medicine_delivery.jpg");
+            background-repeat: no-repeat;
+            /* Prevents the image from repeating */
+            background-size: cover;
+            /* Ensures the image covers the entire background */
+            background-position: center;
+            /* Centers the image */
+            background-attachment: fixed;
+            /* Keeps the image fixed as the user scrolls */
+            margin: 0;
+            /* Removes default body margin */
+            height: 100vh;
+            /* Ensures body takes the full height of the viewport */
+        }
+    </style>
 </head>
 
 <body>

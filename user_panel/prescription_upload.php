@@ -69,6 +69,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['prescription_file']))
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Link to external CSS (custom CSS) -->
     <link href="../style/user_panel/prescription_upload.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("../assets/prescription_upload.jpg");
+            background-repeat: no-repeat;
+            /* Prevents the image from repeating */
+            background-size: cover;
+            /* Ensures the image covers the entire background */
+            background-position: center;
+            /* Centers the image */
+            background-attachment: fixed;
+            /* Keeps the image fixed as the user scrolls */
+            margin: 0;
+            /* Removes default body margin */
+            height: 100vh;
+            /* Ensures body takes the full height of the viewport */
+        }
+    </style>
 </head>
 
 <body>

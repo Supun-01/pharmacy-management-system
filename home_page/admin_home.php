@@ -33,6 +33,13 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="../style/admin_home.css">
+
+    <!-- background image -->
+    <style>
+        body {
+            background-image: url("../assets/admin.jpg");
+        }
+    </style>
 </head>
 
 <body>
